@@ -10,6 +10,10 @@ services:
       - key: GEMINI_API_KEY
         sync: false
       - key: GEMINI_MODEL
-        value: Gemini-3.5-flast-lite
+        value: gemini-3.5-flash-lite
       - key: SESSION_SECRET
         generateValue: true
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: DATABASE_URL
+        sync: false
