@@ -12,3 +12,20 @@ nav{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);display:flex;
 .theme-night header,.theme-night aside,.theme-night nav{background:#302638e8}.theme-night .brand,.theme-night .assistant,.theme-night .composer,.theme-night .card,.theme-night .composer-menu{background:#302638;color:var(--text)}.theme-night .user{color:#4d2944}.theme-night input,.theme-night select{background:#261e2d;color:var(--text)}.theme-night .hero h1{color:#e8b5d6}.theme-night .hero p{color:#c6acc5}
 body.soft-flat{--shadow:none}.soft-flat .card,.soft-flat .composer, .soft-flat .msg{box-shadow:none}.soft-flat .hero .mark{box-shadow:none}
 @media(max-width:760px){aside{position:fixed;top:70px;bottom:82px;left:0;z-index:9;transform:translateX(-105%);transition:.25s;box-shadow:20px 0 50px #bc82a31c}aside.open{transform:translateX(0)}#page{padding:8px 9px 6px}.msg{max-width:88%;padding:11px 13px}.composer{margin-bottom:69px;border-radius:19px}.composer-menu{width:calc(100vw - 18px);border-radius:20px}.composer-menu button{padding:10px}.composer-menu .menu-icon{width:40px;height:40px}.chat-media,.chat-video{max-height:50vh}.brand small{display:none}nav{width:calc(100% - 18px)}nav button{flex:1;padding:8px}.card{padding:17px;margin:10px auto}}
+
+/* UI repair + conversation/avatar controls */
+#page{overflow-y:auto;overscroll-behavior:contain;padding-bottom:110px}
+.chat{min-height:calc(100dvh - 190px)}
+.guest-chat{height:auto;min-height:100%;padding-bottom:25px}
+.guest-chat .hero{margin:22px auto 28px}
+.auth-card{margin:0 auto 28px}
+.auth-card .primary{position:relative;z-index:2;pointer-events:auto}
+#history .history-row{display:flex;align-items:center;gap:3px;padding:3px;border-radius:13px}
+#history .history-row:hover{background:#ffedf5}
+#history .history-title{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;border:0;background:transparent;color:#94758c;padding:8px;border-radius:10px}
+#history .history-more{flex:none;width:30px;height:30px;border:0;border-radius:9px;background:transparent;color:#bd83a7;font-size:20px}
+#history .history-more:hover{background:#f9ddeb}
+.delete-all{width:100%;margin-top:14px;padding:10px;border:1px solid #f0d9e7;border-radius:12px;background:#fff7fb;color:#bd779e;font-size:12px}
+.undo-delete{margin-left:12px;border:1px solid #e7b8d2;border-radius:10px;background:#fbe5f1;color:#9b4f7a;padding:6px 10px}
+.avatar-preview{width:96px;height:96px;object-fit:cover;border-radius:50%;border:3px solid var(--line);display:block;margin:10px 0;box-shadow:var(--shadow)}
+@media(max-width:760px){#page{padding-bottom:125px;overflow-y:auto}.chat{height:auto;min-height:calc(100dvh - 200px)}.chat:has(.messages){height:calc(100dvh - 190px)}.guest-chat .hero{padding:16px 8px}.auth-card{margin-bottom:20px}.composer{margin-bottom:90px}}
