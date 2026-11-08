@@ -1,15 +1,15 @@
 services:
   - type: web
-    name: AI Project Ruan Ruan
+    name: AI Project Mia AI
     runtime: node
     plan: free
     buildCommand: npm install
     startCommand: npm start
     healthCheckPath: /api/health
     envVars:
-      - key: OPENAI_API_KEY
+      - key: GEMINI_API_KEY
         sync: false
-      - key: OPENAI_MODEL
-        value: gpt-5.6
+      - key: GEMINI_MODEL
+        value: Gemini-3.5-flast-lite
       - key: SESSION_SECRET
         generateValue: true
