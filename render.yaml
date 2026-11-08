@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: yamadanihon-ai
+    name: AI Project Ruan Ruan
     runtime: node
     plan: free
     buildCommand: npm install
