@@ -32,3 +32,16 @@ body.soft-flat{--shadow:none}.soft-flat .card,.soft-flat .composer, .soft-flat .
 
 @media(max-width:760px){#page{overflow:hidden!important;padding:0 9px 8px!important}.chat{height:100%!important;min-height:0!important;display:flex;flex-direction:column}.chat .messages{flex:1 1 auto;min-height:0;overflow-y:auto}.chat .composer{flex:0 0 auto;margin:10px 0 7px!important;position:relative}.chat:has(.messages) .composer{margin-top:10px!important}.guest-chat{overflow-y:auto!important}}
 .history-row{position:relative}.history-popover{position:absolute;right:5px;top:calc(100% - 3px);z-index:50;min-width:175px;padding:7px;background:var(--surface,#fff);border:1px solid var(--line,#f0d9e7);border-radius:15px;box-shadow:0 12px 32px #32182b30;display:flex;flex-direction:column;gap:4px}.history-popover button{border:0;background:transparent;text-align:left;padding:11px 12px;border-radius:10px;color:var(--text,#77566e);font-size:13px}.history-popover button:hover{background:var(--surface2,#fff0f7)}.history-popover .danger{color:#d16c91}
+
+/* Targeted viewport layout correction only */
+.history-popover{position:fixed!important;z-index:9999!important;right:auto!important;top:auto;overflow:visible!important}
+@media(max-width:760px){
+ main{height:calc(100dvh - 70px)!important;min-height:0!important}
+ #page{height:100%!important;min-height:0!important;overflow-y:auto!important;overscroll-behavior:contain!important;padding:0 9px 100px!important}
+ .chat{height:100%!important;min-height:0!important}
+ .chat .messages{min-height:0!important;overflow-y:auto!important}
+ .chat .composer{margin:0!important;position:relative!important;flex:none!important}
+ .chat:not(:has(.messages)){height:auto!important;min-height:calc(100dvh - 180px)!important}
+ .guest-chat{height:auto!important;min-height:max-content!important;overflow:visible!important;padding-bottom:30px!important}
+ .guest-chat .hero{margin:20px auto!important}
+}
