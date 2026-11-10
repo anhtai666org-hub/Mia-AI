@@ -45,3 +45,9 @@ body.soft-flat{--shadow:none}.soft-flat .card,.soft-flat .composer, .soft-flat .
  .guest-chat{height:auto!important;min-height:max-content!important;overflow:visible!important;padding-bottom:30px!important}
  .guest-chat .hero{margin:20px auto!important}
 }
+
+
+/* Readable, secure links in Mia's assistant replies */
+.msg.assistant a{color:var(--accent,#c65391);font-weight:800;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px;overflow-wrap:anywhere;cursor:pointer}
+.msg.assistant a:hover{filter:brightness(.88)}
+.msg.assistant strong{font-weight:800}
