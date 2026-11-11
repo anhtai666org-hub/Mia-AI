@@ -162,3 +162,12 @@ body.theme-night{--bg:#09090c!important;--surface:#15151a!important;--surface2:#
 body.theme-night header{background:#101014e8!important;border-color:#28262d!important}
 body.theme-night .card,body.theme-night .option-card,body.theme-night .history-row{background:#15151a!important;color:#eeeaf2!important}
 body.theme-custom{background:var(--wall)!important}
+
+.color-picker-overlay{position:fixed;inset:0;z-index:200;background:#0008;display:grid;place-items:center;padding:20px}
+.color-picker-card{width:min(320px,100%);background:var(--surface,#fff);color:var(--text,#333);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 20px 70px #0004}
+.color-picker-card h3{margin:0 0 18px}.color-picker-card input[type=color]{width:100%;height:70px;border:0;background:none;padding:0;cursor:pointer}.color-picker-card>div{display:flex;gap:10px;margin-top:18px}.color-picker-card button{flex:1;border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--surface2);color:var(--text)}
+.about-card{position:relative}.about-close{position:absolute;right:12px;top:12px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--surface2);color:var(--text);font-size:23px}
+#page .chat{overflow:hidden}
+#page .chat>*:not(.chat-wall-video){position:relative;z-index:1}
+#page .chat-wall-video{opacity:.9}
+body.theme-night .color-picker-card{background:#15151a;color:#eee}
