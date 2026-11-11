@@ -143,3 +143,22 @@ main{height:calc(100dvh - 82px)!important;padding-bottom:0!important}
 .history-head-icon svg{width:27px;height:27px;stroke:currentColor;stroke-width:1.65;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .history-head-icon{display:grid;place-items:center}
 @media(max-width:480px){#drawer{height:58dvh!important}#optionsSheet{max-height:72dvh!important}}
+
+/* Last pass: header controls, backdrop/sheet layering, chat wallpaper */
+.app-header .round-head{width:48px!important;height:48px!important;min-width:48px!important;font-size:20px!important;flex:0 0 48px!important}
+.app-header{height:64px!important;padding:0 14px!important;gap:10px!important}
+.history-head-icon svg{width:23px!important;height:23px!important}
+.centered-brand{font-size:23px!important}
+.brand-chevron{display:none!important}
+#historyBackdrop,#optionsBackdrop{position:fixed!important;inset:0!important;z-index:50!important;background:rgba(0,0,0,.45)!important;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,visibility .2s}
+#historyBackdrop.open,#optionsBackdrop.open{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
+#drawer,#optionsSheet{z-index:51!important;pointer-events:auto!important}
+#drawer{padding-top:8px!important}
+.drawer-handle{display:block!important;position:sticky!important;top:0!important;z-index:3!important;width:44px!important;height:5px!important;min-height:5px!important;background:#555!important;border-radius:99px!important;margin:2px auto 12px!important;touch-action:none!important;cursor:grab}
+#drawer:before{display:none!important}
+#page .chat{background-image:var(--chat-wallpaper,none)!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}
+#page .chat.wall-video{background:transparent!important}
+body.theme-night{--bg:#09090c!important;--surface:#15151a!important;--surface2:#202027!important;--text:#eeeaf2!important;--muted:#9a94a4!important;--line:#2b2931!important;--wall:#08080b!important}
+body.theme-night header{background:#101014e8!important;border-color:#28262d!important}
+body.theme-night .card,body.theme-night .option-card,body.theme-night .history-row{background:#15151a!important;color:#eeeaf2!important}
+body.theme-custom{background:var(--wall)!important}
