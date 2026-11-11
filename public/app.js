@@ -62,7 +62,7 @@ bindSheetSwipe($("#drawer"),()=>{if($("#drawer").classList.contains("open"))togg
 /* reliable drag-to-dismiss, drag starts on the sheet handle only */
 function dragSheet(sheet,handle,close){
  let sy=0,dy=0,active=false;
- handle.addEventListener("pointerdown",e=>{if(e.button!==0&&e.pointerType==="mouse")return;active=true;sy=e.clientY;dy=0;handle.setPointerCapture?.(e.pointerId);sheet.style.transition="none";});
+ handle.addEventListener("pointerdown",e=>{if(e.button!==0&&e.pointerType==="mouse")return;if(sheet.id==="drawer"&&e.clientY>sheet.getBoundingClientRect().top+42)return;active=true;sy=e.clientY;dy=0;handle.setPointerCapture?.(e.pointerId);sheet.style.transition="none";});
  handle.addEventListener("pointermove",e=>{if(!active)return;dy=Math.max(0,e.clientY-sy);sheet.style.transform="translate3d(0,"+dy+"px,0)";});
  const end=e=>{if(!active)return;active=false;sheet.style.transition="";sheet.style.transform="";if(dy>65)close();dy=0};
  handle.addEventListener("pointerup",end);handle.addEventListener("pointercancel",end);
