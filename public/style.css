@@ -93,3 +93,24 @@ main{height:calc(100dvh - 92px)!important}
 #drawer .side-bottom{display:none}
 #drawer:before{content:"";display:block;width:62px;height:9px;border-radius:10px;background:#444;margin:0 auto 12px}
 @media(max-width:760px){.app-header{height:82px!important;padding:0 18px!important}main{height:calc(100dvh - 82px)!important}.options-sheet{padding-left:18px;padding-right:18px}.theme-quick button{padding:9px 10px}.option-line{font-size:16px;gap:14px}.option-account .account-name{font-size:18px}}
+
+/* FIX: compact phone panels, bottom gesture dismissal, no bottom tabs */
+.bottom-nav{display:none!important}
+main{height:calc(100dvh - 82px)!important;padding-bottom:0!important}
+#page{padding-bottom:16px!important}
+.options-sheet{max-height:min(82dvh,720px)!important;height:auto!important;overflow-y:auto!important;padding:10px 16px 22px!important;border-radius:26px 26px 0 0!important;overscroll-behavior:contain}
+.sheet-handle{width:54px;height:5px;margin:0 auto 14px!important;touch-action:pan-y}
+.option-account{min-height:72px!important;padding:12px 14px!important;margin-bottom:14px!important;border-radius:20px!important}
+.option-account .account-avatar{width:48px!important;height:48px!important}
+.option-account .account-name{font-size:16px!important}.option-account .account-sub{font-size:12px!important}
+.option-section h4{font-size:13px!important;margin:14px 6px 8px!important}
+.option-card{border-radius:20px!important;padding:0 12px!important;margin-bottom:12px!important}
+.option-line{min-height:52px!important;padding:9px 5px!important;font-size:15px!important;gap:10px!important}
+.option-symbol{font-size:20px!important;width:23px!important}
+.theme-quick{border-radius:12px!important}.theme-quick button{font-size:12px!important;padding:7px 9px!important;border-radius:9px!important}
+#drawer{max-height:72dvh!important;height:auto!important;padding:12px 16px 22px!important;border-radius:26px 26px 0 0!important;overflow-y:auto!important;overscroll-behavior:contain}
+#drawer:before{height:5px!important;width:54px!important;margin:0 auto 14px!important}
+#drawer .new-chat{min-height:50px!important;border-radius:16px!important}
+#drawer h4{margin:14px 6px 8px!important;font-size:13px!important}
+#history{max-height:45dvh!important}
+@media(max-width:480px){.options-sheet{max-height:78dvh!important}.option-line{min-height:48px!important}.option-account{min-height:66px!important}}
