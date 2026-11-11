@@ -171,3 +171,9 @@ body.theme-custom{background:var(--wall)!important}
 #page .chat>*:not(.chat-wall-video){position:relative;z-index:1}
 #page .chat-wall-video{opacity:.9}
 body.theme-night .color-picker-card{background:#15151a;color:#eee}
+
+/* Fix sheet backdrop stacking: overlays must never sit above the sheet controls */
+.panel-backdrop{z-index:29!important;pointer-events:none!important}
+.panel-backdrop.open{pointer-events:auto!important}
+#drawer{z-index:32!important}
+.options-sheet{z-index:31!important}
