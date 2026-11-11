@@ -48,4 +48,14 @@ $("#optionAbout").onclick=()=>{closePanels();$("#page").innerHTML='<div class="c
 $("#optionListen").onclick=()=>toast("Mục Nghe hiện chưa có chức năng riêng.");
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closePanels()});
 
+
+/* Swipe down to dismiss bottom sheets; preserve native inner scrolling */
+function bindSheetSwipe(el,close){
+ let y0=0,x0=0,armed=false;
+ el.addEventListener("touchstart",e=>{if(!e.touches||e.touches.length!==1)return;const t=e.touches[0];y0=t.clientY;x0=t.clientX;armed=el.scrollTop<=0;},{passive:true});
+ el.addEventListener("touchend",e=>{if(!armed||!e.changedTouches?.length)return;const t=e.changedTouches[0],dy=t.clientY-y0,dx=t.clientX-x0;if(dy>85&&Math.abs(dx)<100&&el.scrollTop<=0)close();armed=false;},{passive:true});
+}
+bindSheetSwipe($("#optionsSheet"),closePanels);
+bindSheetSwipe($("#drawer"),()=>{if($("#drawer").classList.contains("open"))toggleHistory()});
+
 boot();
