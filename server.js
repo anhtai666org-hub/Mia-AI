@@ -22,8 +22,25 @@ app.use(cookieSession({name:"ynai_session",keys:[process.env.SESSION_SECRET||"ch
 app.use("/api/",rateLimit({windowMs:60000,limit:60,standardHeaders:true,legacyHeaders:false}));
 function uid(){return Math.random().toString(36).slice(2)+Date.now().toString(36)}
 function currentUser(req){if(req.session?.userId)return users.get(req.session.userId)||null;if(!req.session.guestId)req.session.guestId="guest_"+uid();const id=req.session.guestId;if(!conversations.has(id))conversations.set(id,[]);if(!memories.has(id))memories.set(id,[]);return{id,username:"Khách",email:null,guest:true}}
-function auth(req,res,next){const u=req.session?.userId?users.get(req.session.userId):null;if(!u)return res.status(401).json({error:"Cần đăng nhập."});req.user=u;next()}
-function chatUser(req,res,next){req.user=currentUser(req);next()}
+function auth(req,res,next){
+  const userId=req.session?.userId;
+  const user=userId?users.get(userId):null;
+  if(!user){
+    return res.status(401).json({error:"Cần đăng nhập."});
+  }
+  req.user=user;
+  return next();
+}
+
+// Cho phép cả khách và tài khoản đã đăng nhập sử dụng chat.
+function chatUser(req,res,next){
+  const user=currentUser(req);
+  if(!user){
+    return res.status(500).json({error:"Không thể tạo phiên khách."});
+  }
+  req.user=user;
+  return next();
+}
 function pub(u){return{id:u.id,username:u.username,email:u.email,avatar:u.avatar||null,createdAt:u.createdAt,guest:!!u.guest}}
 app.get("/api/health",(req,res)=>res.json({ok:true,app:"Mia AI",assistant:AI_NAME,model:GEMINI_MODEL,configured:!!gemini,database:!!pool}));
 app.get("/api/config",(req,res)=>res.json({googleClientId:process.env.GOOGLE_CLIENT_ID||null}));
