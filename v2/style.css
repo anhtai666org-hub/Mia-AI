@@ -3,3 +3,5 @@
 @media(max-width:650px){.rail{width:54px;padding:12px 0}.brand{font-size:19px;margin-bottom:12px}.railbtn{width:38px;height:38px}.drawer{left:54px;width:min(350px,calc(100vw - 54px))}header{height:56px;padding:0 14px}.headleft small,.headleft .statusdot{display:none}.mobilebrand{display:block;font:800 20px Manrope;letter-spacing:-1px}.headleft{display:none}.chat{padding:20px 15px}.welcome{padding-bottom:25px}.welcome h1{font-size:26px}.suggestions{margin-top:25px;gap:8px}.suggestions button{font-size:12px;padding:10px 12px}.composerwrap{padding:8px 12px 10px}.bubble{max-width:88%}.assistant .bubble{max-width:calc(100% - 40px)}.disclaimer{font-size:10px}.orb{width:58px;height:58px;border-radius:20px;margin-bottom:20px}}
 
 .chat{position:relative}.chat>#chatwallvideo{z-index:0}.chat>.welcome,.chat>.messages{position:relative;z-index:1}
+
+.historydelete{border:0;background:transparent;color:var(--muted);font-size:20px;opacity:.45;border-radius:8px;width:28px;height:28px;flex-shrink:0}.historydelete:hover{opacity:1;background:#7d3444;color:#fff}.historyitem small{white-space:nowrap}
