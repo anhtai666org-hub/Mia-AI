@@ -17,7 +17,7 @@ async function initStore(){if(!pool)return;await pool.query("CREATE TABLE IF NOT
 async function saveUser(u){if(pool)await pool.query("INSERT INTO mia_users(id,email,data) VALUES($1,$2,$3) ON CONFLICT(id) DO UPDATE SET email=EXCLUDED.email,data=EXCLUDED.data",[u.id,u.email,JSON.stringify(u)])}
 async function saveData(id){if(pool)await pool.query("INSERT INTO mia_data(user_id,conversations,memories) VALUES($1,$2,$3) ON CONFLICT(user_id) DO UPDATE SET conversations=EXCLUDED.conversations,memories=EXCLUDED.memories",[id,JSON.stringify(conversations.get(id)||[]),JSON.stringify(memories.get(id)||[])])}
 
-app.set("trust proxy",1);app.use(helmet({contentSecurityPolicy:false}));app.use(compression());app.use(express.json({limit:"15mb"}));
+app.set("trust proxy",1);app.use(helmet({contentSecurityPolicy:false}));app.use(compression());app.use(express.json({limit:"22mb"}));
 app.use(cookieSession({name:"ynai_session",keys:[process.env.SESSION_SECRET||"change-this"],httpOnly:true,sameSite:"lax",secure:process.env.NODE_ENV==="production",maxAge:1000*60*60*24*30}));
 app.use("/api/",rateLimit({windowMs:60000,limit:60,standardHeaders:true,legacyHeaders:false}));
 function uid(){return Math.random().toString(36).slice(2)+Date.now().toString(36)}
