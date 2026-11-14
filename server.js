@@ -21,7 +21,7 @@ app.set("trust proxy",1);app.use(helmet({contentSecurityPolicy:false}));app.use(
 app.use(cookieSession({name:"ynai_session",keys:[process.env.SESSION_SECRET||"change-this"],httpOnly:true,sameSite:"lax",secure:process.env.NODE_ENV==="production",maxAge:1000*60*60*24*30}));
 app.use("/api/",rateLimit({windowMs:60000,limit:60,standardHeaders:true,legacyHeaders:false}));
 function uid(){return Math.random().toString(36).slice(2)+Date.now().toString(36)}
-function currentUser(req){if(req.session?.userId)return users.get(req.session.userId)||null;if(!req.session)req.session={};if(!req.session.guestId)req.session.guestId="guest_"+uid();const id=req.session.guestId;if(!conversations.has(id))conversations.set(id,[]);if(!memories.has(id))memories.set(id,[]);return{id,username:"Khách",email:null,guest:true}}
+function currentUser(req){if(req.session?.userId){const u=users.get(req.session.userId);if(u)return u;delete req.session.userId;}if(!req.session)req.session={};if(!req.session.guestId)req.session.guestId="guest_"+uid();const id=req.session.guestId;if(!conversations.has(id))conversations.set(id,[]);if(!memories.has(id))memories.set(id,[]);return{id,username:"Khách",email:null,guest:true}}
 function auth(req,res,next){
   const userId=req.session?.userId;
   const user=userId?users.get(userId):null;
