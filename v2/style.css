@@ -5,3 +5,6 @@
 .chat{position:relative}.chat>#chatwallvideo{z-index:0}.chat>.welcome,.chat>.messages{position:relative;z-index:1}
 
 .historydelete{border:0;background:transparent;color:var(--muted);font-size:20px;opacity:.45;border-radius:8px;width:28px;height:28px;flex-shrink:0}.historydelete:hover{opacity:1;background:#7d3444;color:#fff}.historyitem small{white-space:nowrap}
+
+/* Composer attachment menu and drawer visibility fixes */
+.tools{position:relative}.attachmenu{display:none;position:absolute;bottom:48px;left:0;width:min(300px,calc(100vw - 90px));padding:12px;background:#303034;border:1px solid #48454d;border-radius:22px;box-shadow:0 16px 50px #0008;z-index:20}.attachmenu.show{display:flex;flex-direction:column;gap:7px}.attachmenu button{display:flex;align-items:center;gap:8px;text-align:left;padding:12px;border:0;border-radius:13px;background:transparent;color:#f5f3f7;font-size:15px}.attachmenu button:hover{background:#45434a}.attachmenu small{margin-left:auto;color:#b8a0df;font-size:11px}.attachmenu .selected{background:#514064;color:#e1d0ff}.drawer{visibility:hidden}.drawer.open{visibility:visible}.scrim.open{pointer-events:auto}
