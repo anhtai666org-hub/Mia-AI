@@ -190,3 +190,15 @@ body.theme-night #page,body.theme-night .chat,body.theme-night main{background-c
 body.theme-night .composer,body.theme-night .msg{background-color:#151419!important;color:#eee!important}
 body.theme-custom{--surface:color-mix(in srgb,var(--accent) 12%,white)!important;--surface2:color-mix(in srgb,var(--accent) 20%,white)!important;--text:color-mix(in srgb,var(--accent) 65%,#29202a)!important;--muted:color-mix(in srgb,var(--accent) 45%,#777)!important;--line:color-mix(in srgb,var(--accent) 35%,white)!important}
 body.theme-custom header,body.theme-custom .card,body.theme-custom .composer,body.theme-custom .msg,body.theme-custom .option-card{background-color:var(--surface)!important;color:var(--text)!important;border-color:var(--line)!important}
+
+/* Root stacking fix: the sheet must be above its dim backdrop */
+main{z-index:auto!important;isolation:auto!important}
+#historyBackdrop,#optionsBackdrop{position:fixed!important;inset:0!important;z-index:80!important;background:rgba(0,0,0,.48)!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important}
+#historyBackdrop.open,#optionsBackdrop.open{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
+#drawer,#optionsSheet{z-index:100!important;pointer-events:auto!important}
+#drawer{padding:48px 16px 18px!important;height:min(62dvh,560px)!important;max-height:75dvh!important}
+#optionsSheet{padding:48px 16px 20px!important;max-height:78dvh!important}
+.sheet-handle,.drawer-handle,#drawer:before{display:none!important}
+.sheet-close{position:absolute!important;top:10px!important;right:12px!important;z-index:120!important;width:36px!important;height:36px!important;border-radius:50%!important;border:1px solid #49464c!important;background:#29272c!important;color:#f5f1f7!important;font-size:25px!important;line-height:1!important;display:grid!important;place-items:center!important;box-shadow:0 3px 12px #0003!important}
+#drawer #history{max-height:none!important}
+@media(max-width:760px){main{height:calc(100dvh - 64px)!important}#page{padding:0 9px 8px!important}.chat{height:100%!important}.chat .composer{margin:8px 0!important}.chat:not(:has(.messages)){height:100%!important;min-height:0!important}.guest-chat{height:100%!important;min-height:0!important;overflow-y:auto!important}}
