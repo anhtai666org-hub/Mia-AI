@@ -1,0 +1,28 @@
+name: Sync Vercel frontend
+on:
+  push:
+    branches: [main]
+    paths:
+      - "v2/**"
+      - ".github/workflows/sync-vercel-frontend.yml"
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sync the Vercel static frontend
+        run: |
+          cp v2/index.html public/index.html
+          cp v2/app.js public/app.js
+          cp v2/style.css public/style.css
+      - name: Commit synced frontend when changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/index.html public/app.js public/style.css
+          if ! git diff --cached --quiet; then
+            git commit -m "Sync Vercel frontend from v2"
+            git push
+          fi
