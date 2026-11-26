@@ -6,8 +6,9 @@ function startMiaBoot(){const layer=$("#miaBoot"),canvas=$("#miaParticles");if(!
 function resize(){dpr=Math.min(window.devicePixelRatio||1,1.5);w=innerWidth;h=innerHeight;canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);const count=Math.min(105,Math.max(38,Math.round(w*h/12500)));points=Array.from({length:count},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:Math.random()*1.5+.35,a:Math.random()*.55+.2,p:Math.random()*6.28}))}
 function draw(){if(!alive)return;ctx.clearRect(0,0,w,h);const max=reduce?0:125;for(let i=0;i<points.length;i++){const p=points[i];if(!reduce){p.x+=p.vx;p.y+=p.vy;p.p+=.012;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1}const alpha=p.a*(.72+.28*Math.sin(p.p));ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle="rgba(211,185,255,"+alpha+")";ctx.fill();if(max)for(let j=i+1;j<points.length;j++){const q=points[j],dx=p.x-q.x,dy=p.y-q.y,dist=Math.hypot(dx,dy);if(dist<max){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle="rgba(172,139,225,"+((1-dist/max)*.14)+")";ctx.lineWidth=.7;ctx.stroke()}}}if(!reduce)raf=requestAnimationFrame(draw)}
 resize();window.addEventListener("resize",resize);if(reduce)draw();else raf=requestAnimationFrame(draw);return()=>{alive=false;cancelAnimationFrame(raf);window.removeEventListener("resize",resize)}}
+const miaBootStartedAt=performance.now();
 const stopMiaBoot=startMiaBoot();
-function finishMiaBoot(){const layer=$("#miaBoot");if(!layer)return;layer.classList.add("is-leaving");setTimeout(()=>{stopMiaBoot();layer.remove()},850)}
+function finishMiaBoot(){const layer=$("#miaBoot");if(!layer)return;const wait=Math.max(0,3400-(performance.now()-miaBootStartedAt));setTimeout(()=>{layer.classList.add("is-leaving");setTimeout(()=>{stopMiaBoot();layer.remove()},850)},wait)}
 
 const localKey="mia-v2-guest-chats";
 function toast(s){$("#toast").textContent=s;$("#toast").classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>$("#toast").classList.remove("show"),2500)}
@@ -54,4 +55,4 @@ window.addEventListener("resize",()=>{if($("#attachMenu").classList.contains("sh
 
 document.querySelectorAll("[data-prompt]").forEach(b=>b.onclick=()=>{input.value=b.dataset.prompt;resize();input.focus()});
 async function initBackgroundMusic(){let a=window.miaAudio||(window.miaAudio=new Audio());a.loop=true;a.volume=+(localStorage.musicVolume||.3);try{let blob=await musicStore("get");a.src=blob?URL.createObjectURL(blob):"/track-maker-audio"}catch{a.src="/track-maker-audio"}a.play().catch(()=>{document.addEventListener("pointerdown",()=>a.play().catch(()=>{}),{once:true});document.addEventListener("keydown",()=>a.play().catch(()=>{}),{once:true})})}
-(async()=>{applyTheme();applyWall();initBackgroundMusic();try{me=(await api("/auth/me")).user}catch{}renderAccountAvatar();await refreshHistory();if(me&&!me.guest&&history.length){/* keep clean welcome until selection */}finishMiaBoot()})();
+(async()=>{try{applyTheme();applyWall();initBackgroundMusic();try{me=(await api("/auth/me")).user}catch{}renderAccountAvatar();await refreshHistory();if(me&&!me.guest&&history.length){/* keep clean welcome until selection */}}catch(e){console.error("Mia startup:",e)}finally{finishMiaBoot()}})();
