@@ -22,7 +22,7 @@ app.use(cookieSession({name:"ynai_session",keys:[process.env.SESSION_SECRET||"ch
 app.use("/api/",rateLimit({windowMs:60000,limit:60,standardHeaders:true,legacyHeaders:false}));
 let storeReady;
 function ensureStore(){if(!storeReady)storeReady=initStore();return storeReady;}
-app.use(async(req,res,next)=>{try{await ensureStore();next()}catch(e){console.error("Database initialization failed",e);res.status(503).json({error:"Cơ sở dữ liệu tạm thời chưa sẵn sàng."})}});
+app.use("/api",async(req,res,next)=>{try{await ensureStore();next()}catch(e){console.error("Database initialization failed",e);res.status(503).json({error:"Cơ sở dữ liệu tạm thời chưa sẵn sàng."})}});
 function uid(){return Math.random().toString(36).slice(2)+Date.now().toString(36)}
 function currentUser(req){if(req.session?.userId){const u=users.get(req.session.userId);if(u)return u;delete req.session.userId;}if(!req.session)req.session={};if(!req.session.guestId)req.session.guestId="guest_"+uid();const id=req.session.guestId;if(!conversations.has(id))conversations.set(id,[]);if(!memories.has(id))memories.set(id,[]);return{id,username:"Khách",email:null,guest:true}}
 function auth(req,res,next){
