@@ -324,3 +324,123 @@ body{
 /* Use the actual Mia site icon in the animated boot mark */
 .boot-core{overflow:hidden;padding:5px}
 .boot-core img{display:block;width:100%;height:100%;object-fit:cover;border-radius:17px;filter:drop-shadow(0 3px 12px #0008)}
+
+
+/* DRAWER + NAV R2: match the Mia cosmic glass language */
+.rail{
+ width:70px;gap:14px;padding:19px 0 16px;
+ background:linear-gradient(180deg,rgba(20,15,28,.97),rgba(13,12,18,.96))!important;
+ border-right:1px solid #d9baff18;
+ box-shadow:8px 0 34px #0002;
+}
+.brand{
+ width:47px;height:47px;margin:0 0 18px;border-radius:16px!important;
+ display:grid;place-items:center;
+ background:linear-gradient(145deg,#3b2b50,#21182d)!important;
+ border:1px solid #d7b6ff38!important;
+ box-shadow:0 7px 24px #a779e522,inset 0 1px #ffffff20;
+}
+.brand-word{font-size:19px;letter-spacing:-1.2px}
+.railbtn{
+ width:43px;height:43px;border-radius:15px;
+ color:#a99db7;background:transparent;border:1px solid transparent;
+ font-size:20px;transition:all .2s ease;
+}
+.railbtn:hover{color:#f3eaff;background:#ffffff0b;border-color:#ffffff12;transform:translateY(-2px)}
+.railbtn.active{
+ color:#f0e2ff;border:1px solid #c9a0ff45;
+ background:linear-gradient(145deg,#49335f,#2b2039);
+ box-shadow:0 7px 22px #a36bd52b,inset 0 1px #ffffff20;
+}
+.railbottom{margin-top:auto}
+.avatar{
+ width:42px;height:42px;border-radius:15px!important;
+ background:linear-gradient(145deg,#30243f,#1c1726)!important;
+ border:1px solid #c8a3f044!important;box-shadow:0 5px 18px #0004;
+}
+.drawer{
+ left:70px;width:min(390px,calc(100vw - 88px));
+ background:
+  radial-gradient(ellipse at 15% 0%,#8d5cc31b,transparent 42%),
+  linear-gradient(155deg,rgba(28,21,39,.985),rgba(16,14,23,.99))!important;
+ border:1px solid #d9baff1c;border-left:0;
+ border-radius:0 24px 24px 0;
+ box-shadow:22px 0 75px #0008, inset 1px 0 #ffffff08;
+ backdrop-filter:blur(28px) saturate(135%);
+ -webkit-backdrop-filter:blur(28px) saturate(135%);
+}
+.drawerhead{
+ height:76px;flex-shrink:0;padding:0 22px;
+ border-bottom:1px solid #ffffff12!important;
+ background:linear-gradient(90deg,#ffffff05,transparent);
+}
+.drawerhead strong{
+ font:700 18px 'Manrope',sans-serif;letter-spacing:-.4px;color:#f4edff;
+}
+.drawerhead .close{
+ width:36px;height:36px;border:1px solid #ffffff14;border-radius:12px;
+ background:#ffffff08;color:#b8a9c8;font-size:23px;
+}
+.drawerhead .close:hover{background:#ffffff14;color:#fff;border-color:#d8b5ff55}
+.drawerbody{padding:19px 17px 24px;overscroll-behavior:contain}
+.draweraction{
+ position:relative;display:flex;align-items:center;min-height:62px;
+ padding:15px 17px;margin:0 0 10px;border-radius:17px;
+ background:linear-gradient(115deg,#ffffff0b,#ffffff04)!important;
+ border:1px solid #ffffff14!important;
+ color:#e9e0f2;font:600 14px 'DM Sans',sans-serif;
+ letter-spacing:.05px;box-shadow:inset 0 1px #ffffff08,0 5px 16px #0002;
+ transition:transform .18s,border-color .18s,background .18s,box-shadow .18s;
+}
+.draweraction:before{
+ content:"";position:absolute;left:0;top:13px;bottom:13px;width:2px;
+ border-radius:3px;background:linear-gradient(#d9b8ff,#9466c8);
+ opacity:0;transition:opacity .18s;
+}
+.draweraction:hover{
+ transform:translateX(3px);border-color:#c69afc55!important;
+ background:linear-gradient(110deg,#49325d66,#ffffff08)!important;
+ box-shadow:inset 0 1px #ffffff12,0 8px 22px #0003,0 0 22px #a16bd511;
+}
+.draweraction:hover:before{opacity:1}
+.historyitem{
+ min-height:64px;padding:12px 10px 12px 13px;margin:0 0 7px;
+ border:1px solid transparent;border-radius:16px;gap:9px;
+ background:#ffffff04;transition:all .18s ease;
+}
+.historyitem:hover{
+ background:linear-gradient(100deg,#49325d55,#ffffff06);
+ border-color:#c69afc2b;transform:translateX(2px);
+}
+.historyitem .historymark{
+ width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;
+ border-radius:12px;background:linear-gradient(145deg,#4a3560,#282035);
+ border:1px solid #d5b4ff24;color:#e2ccff;
+}
+.historyitem .htitle{font-size:13px;font-weight:600;color:#e9e0f2}
+.historyitem small{font-size:10px;color:#93869f}
+.historydelete,.historyrename{
+ width:30px;height:30px;border-radius:10px;opacity:.55;
+ background:#ffffff05;transition:all .18s;
+}
+.historydelete:hover{background:#8d3b55;color:#fff}
+.historyrename:hover{background:#ffffff12;color:#e4caff}
+.drawerbody>.mutedtext{
+ margin:18px 3px;padding:19px 15px;border:1px dashed #ffffff20;
+ border-radius:15px;text-align:center;color:#9e91ad;
+ background:#ffffff04;line-height:1.6;
+}
+.scrim{background:radial-gradient(ellipse at 35% 50%,#130d1c88,#030207c9);backdrop-filter:blur(3px)}
+@media(max-width:650px){
+ .rail{width:56px;padding:13px 0;gap:13px}
+ .brand{width:42px;height:42px;margin-bottom:12px;border-radius:15px!important}
+ .brand-word{font-size:17px}
+ .railbtn{width:40px;height:40px;border-radius:14px}
+ .avatar{width:39px;height:39px;border-radius:14px!important}
+ .drawer{left:56px;width:min(320px,calc(100vw - 76px));border-radius:0 21px 21px 0}
+ .drawerhead{height:68px;padding:0 17px}
+ .drawerhead strong{font-size:17px}
+ .drawerbody{padding:15px 13px 22px}
+ .draweraction{min-height:56px;padding:13px 14px;margin-bottom:8px;border-radius:15px;font-size:13px}
+ .historyitem{min-height:59px;padding:10px 8px 10px 10px}
+}
