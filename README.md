@@ -1,7 +1,7 @@
 <div align="center">
 
-<img src="Hizi.png" alt="Mika" width="88" />
+<img src="Hizi.png" alt="Mika" width="178" />
 
-# Mia AI – AI VTuber Chat - No Model VTuber
+# Mia AI – AI Chat
 
 Ủng hộ tớ trên Tiktok nhé, tớ là @ninavtubervietnam
