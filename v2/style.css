@@ -90,3 +90,13 @@ body{letter-spacing:.005em;background:radial-gradient(ellipse at 55% -18%,#29203
 .attachmenu button{position:relative;z-index:1;min-height:46px;padding:11px 13px;border-radius:12px;white-space:nowrap}
 .attachmenu button:hover{background:#ffffff10}
 @media(max-width:650px){.composerwrap{padding:8px 10px 10px}.composer{background:rgba(25,23,31,.86)}.attachmenu{width:min(290px,calc(100vw - 76px));max-height:58dvh}.attachmenu button{font-size:14px}}
+
+/* Mia identity and icon system */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap');
+.brand{padding:0;width:48px;height:48px;border-radius:15px!important;display:grid;place-items:center;background:linear-gradient(145deg,#282331,#19171f)!important;border:1px solid #ffffff12!important;box-shadow:0 5px 18px #0003;}
+.brand-word{font:700 19px 'Space Grotesk',sans-serif;letter-spacing:-1.3px;background:linear-gradient(140deg,#fff 12%,#d9c4f7 78%);-webkit-background-clip:text;background-clip:text;color:transparent!important;}
+.orb{overflow:hidden;padding:5px;background:linear-gradient(145deg,#30273b,#17151d);}
+.orb img{display:block;width:100%;height:100%;object-fit:cover;border-radius:inherit;}
+.roleicon{overflow:hidden;padding:0;background:#211d28!important;border:1px solid #ffffff16!important;}
+.roleicon img{width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block;}
+.avatar.has-image img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
