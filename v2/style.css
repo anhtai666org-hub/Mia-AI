@@ -123,3 +123,200 @@ body{letter-spacing:.005em;background:radial-gradient(ellipse at 55% -18%,#29203
 @keyframes bootSpin{to{transform:rotate(405deg)}}@keyframes bootPulse{0%,100%{transform:scale(1);box-shadow:0 0 45px #a66cff44}50%{transform:scale(1.055);box-shadow:0 0 75px #a66cff77}}@keyframes bootLoad{0%{transform:translateX(-120%)}100%{transform:translateX(340%)}}@keyframes bootRise{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:translateY(-8px) scale(1)}}
 @media(max-width:600px){.boot-corner{font-size:7px;bottom:17px}.boot-left{left:13px}.boot-right{right:13px}.boot-mark{width:82px;height:82px}.boot-core{width:58px;height:58px}}
 @media(prefers-reduced-motion:reduce){.boot-ring,.boot-core,.boot-content,.boot-loader i{animation:none!important}.mia-boot{transition:opacity .2s ease,visibility .2s ease}}
+
+
+/* MIA COSMIC UI REFRESH */
+:root{
+ --bg:#0b0a11;--panel:#15121d;--surface:#211b2b;--line:#ffffff16;
+ --text:#f7f2ff;--muted:#aaa0b8;--accent:#d0b0ff;--accent2:#a77bdf;
+ --user:#292235;--shadow:0 24px 80px #03020799;
+}
+html{background:#0b0a11}
+body{
+ background:
+  radial-gradient(ellipse at 50% 8%,#39244f55 0%,transparent 42%),
+  radial-gradient(ellipse at 100% 100%,#34204a30 0%,transparent 38%),
+  #0b0a11;
+ color:var(--text);font-family:'DM Sans',sans-serif;
+}
+.app{position:relative;isolation:isolate}
+.app:before{
+ content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.22;
+ background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);
+ background-size:64px 64px;mask-image:linear-gradient(to bottom,#000,transparent 78%);
+}
+.rail{
+ width:76px;padding:20px 0 17px;gap:15px;
+ background:linear-gradient(180deg,#100d17f2,#100d17d9);
+ border-right:1px solid #ffffff12;
+ box-shadow:10px 0 50px #0002;
+}
+.brand{
+ width:48px;height:48px;margin-bottom:22px;border-radius:17px!important;
+ background:linear-gradient(145deg,#3d2b55,#21182d)!important;
+ border:1px solid #d8baff35!important;
+ box-shadow:0 0 28px #b17be52b,inset 0 1px #ffffff24;
+}
+.brand-word{font-size:20px;letter-spacing:-1.5px}
+.railbtn{
+ width:44px;height:44px;border-radius:15px;font-size:19px;
+ color:#a99eb8;transition:transform .2s,background .2s,color .2s,box-shadow .2s;
+}
+.railbtn:hover{background:#ffffff0d;color:#fff;transform:translateY(-2px)}
+.railbtn.active{
+ color:#eadbff;border:1px solid #c59afc35;
+ background:linear-gradient(145deg,#4a3263aa,#2a2039cc);
+ box-shadow:0 7px 24px #9d69d52b,inset 0 1px #ffffff16;
+}
+.avatar{width:42px;height:42px;background:#2a2037;border:1px solid #d9baff42}
+.main{
+ background:
+  radial-gradient(ellipse at 50% 32%,#2b1d3b24,transparent 55%),
+  transparent;
+}
+.chat{
+ padding:clamp(26px,5vh,58px) clamp(18px,4vw,54px) 24px;
+ scrollbar-width:thin;scrollbar-color:#554365 transparent;
+}
+.welcome{
+ position:relative;min-height:100%;padding:20px 16px 64px;
+ justify-content:center;
+}
+.welcome:before{
+ content:"";position:absolute;width:min(660px,82vw);height:430px;top:50%;left:50%;
+ transform:translate(-50%,-58%);pointer-events:none;z-index:-1;
+ background:radial-gradient(ellipse,#8b59c51b 0%,#4c32600c 43%,transparent 72%);
+ filter:blur(12px);
+}
+.welcome-kicker{
+ display:flex;align-items:center;gap:9px;margin-bottom:22px;
+ color:#b7a5ce;font:700 10px 'Space Grotesk',sans-serif;
+ letter-spacing:3px;text-transform:uppercase;
+}
+.welcome-kicker span{
+ width:7px;height:7px;border-radius:50%;background:#c9a3ff;
+ box-shadow:0 0 14px #bd8cff;animation:welcomeDot 2s ease-in-out infinite;
+}
+.orb{
+ width:94px;height:94px;margin:0 0 28px;padding:9px;
+ border-radius:30px;border:1px solid #d7b4ff55;
+ background:linear-gradient(145deg,#51376b,#1c1726);
+ box-shadow:0 16px 60px #a56be52c,0 0 0 9px #b58be50a,inset 0 1px #ffffff30;
+}
+.orb img{border-radius:22px;filter:drop-shadow(0 4px 12px #0007)}
+.welcome h1{
+ margin:0 0 14px;font:700 clamp(32px,4.5vw,52px) 'Manrope',sans-serif;
+ letter-spacing:-2.2px;line-height:1.13;
+}
+.welcome h1 span{
+ background:linear-gradient(110deg,#f5eaff 5%,#d6b5ff 48%,#a77cda 100%);
+ -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.welcome>p{
+ max-width:520px;color:#aaa0b8;font-size:15px;line-height:1.8;
+}
+.suggestions{
+ width:min(760px,100%);margin-top:38px;gap:12px;
+}
+.suggestions button{
+ min-height:52px;padding:13px 18px;border-radius:17px;
+ background:linear-gradient(145deg,#1d1827eF,#15121deF);
+ border:1px solid #ffffff18;color:#d7cce4;
+ box-shadow:0 8px 26px #0002,inset 0 1px #ffffff08;
+ font-size:13px;font-weight:600;
+ transition:transform .2s,border-color .2s,background .2s,box-shadow .2s;
+}
+.suggestions button:hover{
+ transform:translateY(-3px);border-color:#c39afc70;
+ background:linear-gradient(145deg,#30223f,#20182d);
+ box-shadow:0 12px 30px #9d69d51c,0 0 0 3px #bd93f00a;
+}
+.messages{max-width:850px;gap:30px}
+.message{font-size:15.5px;line-height:1.8}
+.roleicon{
+ width:34px;height:34px;flex-basis:34px;border-radius:13px;
+ background:linear-gradient(145deg,#49345d,#241c30)!important;
+ border:1px solid #d5b2ff30!important;box-shadow:0 5px 18px #0005;
+}
+.user .bubble{
+ padding:14px 19px;border-radius:20px 20px 7px 20px;
+ background:linear-gradient(145deg,#382b49,#292033);
+ border:1px solid #d2b0ff1c;box-shadow:0 9px 25px #0003;
+}
+.assistant .bubble{padding:4px 0;max-width:calc(100% - 48px)}
+.assistant .bubble p{margin:0 0 15px}
+.bubble pre{border-radius:16px;background:#100d17;border:1px solid #ffffff18}
+.bubble code{color:#e1caff}
+.bubble a{color:#d7b9ff}
+.composerwrap{
+ max-width:920px;padding:14px 28px 20px;
+}
+.composer{
+ padding:15px 17px 12px;border-radius:26px;
+ background:linear-gradient(145deg,#211a2ceF,#17131feF);
+ border:1px solid #d7b6ff2c;
+ box-shadow:0 18px 55px #0006,0 0 35px #9e6bd510,inset 0 1px #ffffff13;
+}
+.composer:focus-within{
+ border-color:#c49afc99;
+ box-shadow:0 18px 55px #0007,0 0 0 4px #b88be51a,0 0 38px #a36bd51c,inset 0 1px #ffffff18;
+}
+.composer textarea{font-size:15.5px;line-height:1.65;color:#f7f0ff}
+.composer textarea::placeholder{color:#8f829e}
+.attach{
+ width:38px;height:38px;border-radius:14px;
+ background:#ffffff08;border:1px solid #ffffff16;color:#c5b2d9;
+}
+.send{
+ width:40px;height:40px;border-radius:15px;color:#24172f;
+ background:linear-gradient(145deg,#e0c5ff,#b78be8);
+ box-shadow:0 5px 20px #bd8cf65c,inset 0 1px #ffffff9c;
+}
+.send:hover{transform:translateY(-2px) scale(1.03)}
+.disclaimer{font-size:11px;color:#82778f;margin-top:12px}
+.drawer{
+ background:linear-gradient(180deg,#1b1525f7,#130f1afc);
+ border-right:1px solid #ffffff18;
+ box-shadow:22px 0 70px #0008;
+}
+.drawerhead{height:72px;border-bottom:1px solid #ffffff14}
+.drawerhead strong{font-size:17px;letter-spacing:-.3px}
+.drawerbody{padding:18px}
+.draweraction{
+ background:linear-gradient(145deg,#2a2137,#211a2b);
+ border:1px solid #ffffff17;border-radius:15px;
+}
+.draweraction:hover{border-color:#b58be56b;background:#322540}
+.historyitem{padding:14px 12px}
+.historyitem:hover{background:#ffffff0c}
+.field{background:#100d17;border-color:#ffffff20}
+.primary{background:linear-gradient(110deg,#e0c5ff,#b78be8);color:#261832}
+.toast{background:#211a2b;border-color:#b58be544}
+.attachmenu{background:#21192cf7;border-color:#ffffff22}
+@keyframes welcomeDot{0%,100%{opacity:.65;transform:scale(.85)}50%{opacity:1;transform:scale(1.2)}}
+@media(max-width:800px){
+ .rail{width:66px}.drawer{left:66px}
+ .chat{padding-left:20px;padding-right:20px}
+ .composerwrap{padding-left:18px;padding-right:18px}
+}
+@media(max-width:650px){
+ .rail{width:56px;padding-top:14px}
+ .brand{width:42px;height:42px;margin-bottom:13px;border-radius:15px!important}
+ .railbtn{width:40px;height:40px}
+ .drawer{left:56px;width:min(350px,calc(100vw - 56px))}
+ .chat{padding:24px 13px 12px}
+ .welcome{padding:12px 6px 30px}
+ .welcome-kicker{font-size:9px;letter-spacing:2px;margin-bottom:19px}
+ .orb{width:78px;height:78px;border-radius:26px;margin-bottom:23px}
+ .orb img{border-radius:19px}
+ .welcome h1{font-size:clamp(29px,8vw,38px);letter-spacing:-1.6px}
+ .welcome>p{font-size:13px;line-height:1.7;max-width:330px}
+ .suggestions{margin-top:27px;gap:9px;max-width:360px}
+ .suggestions button{width:100%;min-height:47px;text-align:left;padding:12px 15px}
+ .composerwrap{padding:8px 10px 12px}
+ .composer{border-radius:22px;padding:12px 13px 10px}
+ .user .bubble{padding:12px 15px}
+ .messages{gap:23px}
+ .message{font-size:14.5px}
+ .disclaimer{font-size:10px}
+}
