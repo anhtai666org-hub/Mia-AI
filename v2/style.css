@@ -17,3 +17,63 @@
 /* Account profile and separated authentication screens */
 .avatar{overflow:hidden;display:grid;place-items:center;padding:0}.avatar.has-image{background:transparent}.avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .profile-card{display:flex;align-items:center;flex-direction:column;padding:22px 12px 18px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 10%,var(--panel)),var(--panel));margin-bottom:18px}.profile-avatar-wrap{position:relative;margin-bottom:12px}.profile-avatar{width:88px;height:88px;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:linear-gradient(145deg,#69518b,#30263c);border:2px solid color-mix(in srgb,var(--accent) 60%,var(--line));font:700 30px Manrope;color:#fff}.profile-avatar img{width:100%;height:100%;object-fit:cover}.avatar-edit{position:absolute;right:0;bottom:0;width:29px;height:29px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#21182e;border:3px solid var(--panel);cursor:pointer}.profile-name{font:700 18px Manrope}.profile-email{font-size:12px;color:var(--muted);margin-top:4px;overflow-wrap:anywhere}.auth-intro{text-align:center;padding:10px 8px 4px}.auth-mark{width:48px;height:48px;margin:0 auto 12px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(145deg,#765b9c,#30263c);font:800 22px Manrope;color:#fff}.auth-intro h2{font:700 21px Manrope;margin:0 0 6px}.auth-intro p,.auth-hint{color:var(--muted);font-size:12px}.auth-intro p{margin:0}.auth-submit{margin-top:22px;padding:13px}.auth-divider{display:flex;align-items:center;gap:12px;margin:20px 0 14px;color:var(--muted);font-size:10px;letter-spacing:1.5px}.auth-divider:before,.auth-divider:after{content:"";height:1px;background:var(--line);flex:1}.google-slot{display:flex;justify-content:center;min-height:42px}.auth-hint{text-align:center;margin:9px 0}.auth-switch{text-align:center;color:var(--muted);font-size:13px;margin:22px 0 8px}.auth-switch button{border:0;background:none;color:var(--accent);font-weight:700;padding:4px}.required{color:#e59aab}
+
+/* Mia interface refinement: restrained depth, clearer hierarchy, calmer surfaces */
+:root{--bg:#101014;--panel:#18171d;--surface:#211f27;--line:#302d37;--text:#f2eff6;--muted:#a09aa9;--accent:#c09beF;--accent2:#a982dc;--user:#25222c;--shadow:0 18px 55px #0005}
+body{letter-spacing:.005em;background:radial-gradient(ellipse at 55% -18%,#292033 0%,transparent 42%),var(--bg)}
+.app{background:transparent}
+.rail{background:rgba(17,16,21,.94);backdrop-filter:blur(16px);border-right:1px solid #ffffff0c;padding-top:18px;gap:13px}
+.brand{font-size:23px;letter-spacing:-2.5px;background:linear-gradient(145deg,#fff,#bda5dc);background-clip:text;-webkit-background-clip:text;color:transparent!important}
+.railbtn{width:42px;height:42px;border:1px solid transparent;background:transparent;font-size:19px}
+.railbtn.active{border-color:#9b7ac52b;background:linear-gradient(145deg,#382b48,#241e2d);box-shadow:inset 0 1px #ffffff0b,0 5px 18px #0003}
+.railbtn:hover{transform:translateY(-1px)}
+.avatar{width:40px;height:40px;border:1px solid #ffffff24;box-shadow:0 4px 15px #0004}
+.main{background:transparent}
+.chat{padding-top:clamp(24px,4vh,46px);scrollbar-width:thin;scrollbar-color:#4a4252 transparent}
+.messages{max-width:790px;gap:29px}
+.message{gap:13px;line-height:1.72;font-size:15.5px}
+.roleicon{width:31px;height:31px;flex-basis:31px;border-radius:11px;background:linear-gradient(145deg,#382c48,#25202e);border:1px solid #ffffff0b;box-shadow:0 3px 12px #0003}
+.assistant .bubble{padding:3px 0;max-width:calc(100% - 44px)}
+.user .bubble{background:linear-gradient(145deg,#2c2833,#24212a);border:1px solid #ffffff0d;border-bottom-right-radius:6px;border-top-right-radius:17px;box-shadow:0 5px 18px #0002;padding:13px 18px}
+.assistant .bubble p{margin-bottom:14px}
+.bubble pre{background:#0c0b10;border-color:#ffffff12}
+.bubble blockquote{border-color:var(--accent2)}
+.bubble a{color:#d0b7ff}
+.composerwrap{max-width:850px;padding:12px 22px 15px}
+.composer{background:rgba(25,23,30,.94);backdrop-filter:blur(18px);border:1px solid #ffffff19;border-radius:24px;padding:14px 16px 11px;box-shadow:0 12px 38px #0004,inset 0 1px #ffffff08;transition:border-color .2s,box-shadow .2s}
+.composer:focus-within{border-color:#8e70b5;box-shadow:0 12px 38px #0005,0 0 0 3px #a982dc13,inset 0 1px #ffffff0b}
+.composer textarea{font-size:15px;min-height:31px}
+.attach{width:36px;height:36px;border-radius:13px;background:#ffffff04}
+.send{width:38px;height:38px;border-radius:13px;background:linear-gradient(145deg,#c69df5,#a878d4);box-shadow:0 4px 14px #9c69ca35;transition:transform .16s,filter .16s}
+.send:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.disclaimer{color:#77717f;letter-spacing:.015em;margin-top:11px}
+.drawer{background:rgba(25,23,30,.98);backdrop-filter:blur(18px);border-right-color:#ffffff12}
+.drawerhead{border-bottom-color:#ffffff12}
+.draweraction{background:linear-gradient(145deg,#24212a,#1e1c23);border-color:#ffffff10;border-radius:15px;padding:14px 15px;transition:background .16s,border-color .16s,transform .16s}
+.draweraction:hover{background:#2b2633;border-color:#70598e;transform:translateX(2px)}
+.historyitem{border-radius:14px}
+.historyitem:hover{background:#ffffff08}
+.field{background:#111016;border-color:#ffffff19;border-radius:13px;padding:13px}
+.primary{background:linear-gradient(145deg,#c7a5f2,#a77bd4);box-shadow:0 5px 16px #9a70c52b}
+.toast{backdrop-filter:blur(14px);box-shadow:0 8px 30px #0006}
+.welcome .orb{border-radius:22px;background:radial-gradient(circle at 30% 22%,#755b98,#292034 72%);border-color:#80669d66;box-shadow:0 10px 45px #9e70dc1b,inset 0 1px #ffffff20}
+.welcome h1{letter-spacing:-1.35px}
+.suggestions button{background:#19171e;border-color:#ffffff12;border-radius:15px;transition:.18s}
+.suggestions button:hover{background:#25202d;border-color:#8264a8;transform:translateY(-2px)}
+@media(max-width:800px){
+ .rail{width:60px}
+ .drawer{left:60px;width:min(365px,calc(100vw - 60px))}
+ .chat{padding-left:17px;padding-right:17px}
+ .composerwrap{padding-left:14px;padding-right:14px}
+ .messages{gap:25px}
+ .message{font-size:15px}
+}
+@media(max-width:650px){
+ .rail{width:54px}
+ .drawer{left:54px;width:min(350px,calc(100vw - 54px))}
+ .chat{padding:18px 13px}
+ .composerwrap{padding:8px 10px 10px}
+ .user .bubble{padding:12px 15px}
+ .assistant .bubble{max-width:calc(100% - 42px)}
+ .messages{gap:22px}
+}
