@@ -320,3 +320,7 @@ body{
  .message{font-size:14.5px}
  .disclaimer{font-size:10px}
 }
+
+/* Use the actual Mia site icon in the animated boot mark */
+.boot-core{overflow:hidden;padding:5px}
+.boot-core img{display:block;width:100%;height:100%;object-fit:cover;border-radius:17px;filter:drop-shadow(0 3px 12px #0008)}
