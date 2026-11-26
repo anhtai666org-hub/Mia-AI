@@ -1,4 +1,5 @@
 const express=require("express");
+const path=require("path");
 const helmet=require("helmet");
 const compression=require("compression");
 const rateLimit=require("express-rate-limit");
@@ -76,4 +77,4 @@ app.post("/api/chat",chatUser,async(req,res)=>{
   let answer=r.text||"Mình chưa tạo được câu trả lời.";const gm=r.candidates?.[0]?.groundingMetadata,refs=(gm?.groundingChunks||[]).map(x=>x.web).filter(x=>x?.uri).filter((x,i,a)=>a.findIndex(y=>y.uri===x.uri)===i).slice(0,8),queries=gm?.webSearchQueries||[];if(refs.length)answer+="\n\n**Nguồn tham khảo:**\n"+refs.map(x=>"- ["+(x.title||new URL(x.uri).hostname)+"]("+x.uri+")").join("\n");if(queries.length)answer+="\n\n*Tìm kiếm: "+queries.join(" · ")+"*";c.messages.push({role:"assistant",content:answer,createdAt:Date.now()});c.updatedAt=Date.now();await saveData(req.user.id);res.json({answer,conversation:{id:c.id,title:c.title,updatedAt:c.updatedAt}});
  }catch(err){console.error("[MIA GEMINI ERROR]",{message:err?.message,status:err?.status,code:err?.code,details:err?.details});c.messages.pop();res.status(502).json({error:"Không gọi được AI lúc này rùi cậu ơi, đợi tớ fix nha!!"})}
 });
-app.get("/Hizi.png",(req,res)=>res.sendFile(__dirname+"/Hizi.png"));app.get("/track-maker-audio",(req,res)=>{res.type("audio/mpeg");res.sendFile(__dirname+"/Track Maker")});app.use(express.static("v2"));app.use("/v2",express.static("v2"));app.use(express.static("public"));if(require.main===module){ensureStore().then(()=>app.listen(PORT,"0.0.0.0",()=>console.log(`Mia AI listening on ${PORT}`))).catch(e=>{console.error("Database startup failed",e);process.exit(1)});}else{module.exports=app;module.exports.default=app;}
+app.get("/Hizi.png",(req,res)=>res.sendFile(path.join(__dirname,"Hizi.png")));app.get("/track-maker-audio",(req,res)=>{res.type("audio/mpeg");res.sendFile(path.join(__dirname,"Track Maker"))});app.use(express.static(path.join(__dirname,"v2")));app.use("/v2",express.static(path.join(__dirname,"v2")));app.use(express.static(path.join(__dirname,"public")));app.get("/",(req,res)=>res.sendFile(path.join(__dirname,"public","index.html")));if(require.main===module){ensureStore().then(()=>app.listen(PORT,"0.0.0.0",()=>console.log(`Mia AI listening on ${PORT}`))).catch(e=>{console.error("Database startup failed",e);process.exit(1)});}else{module.exports=app;module.exports.default=app;}
