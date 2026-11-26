@@ -8,7 +8,7 @@ function draw(){if(!alive)return;ctx.clearRect(0,0,w,h);const max=reduce?0:125;f
 resize();window.addEventListener("resize",resize);if(reduce)draw();else raf=requestAnimationFrame(draw);return()=>{alive=false;cancelAnimationFrame(raf);window.removeEventListener("resize",resize)}}
 const miaBootStartedAt=performance.now();
 const stopMiaBoot=startMiaBoot();
-function finishMiaBoot(){const layer=$("#miaBoot");if(!layer)return;const wait=Math.max(0,3400-(performance.now()-miaBootStartedAt));setTimeout(()=>{layer.classList.add("is-leaving");setTimeout(()=>{stopMiaBoot();layer.remove()},850)},wait)}
+function finishMiaBoot(){const layer=$("#miaBoot");if(!layer)return;const wait=Math.max(0,5000-(performance.now()-miaBootStartedAt));setTimeout(()=>{layer.classList.add("is-leaving");setTimeout(()=>{stopMiaBoot();layer.remove()},850)},wait)}
 
 const localKey="mia-v2-guest-chats";
 function toast(s){$("#toast").textContent=s;$("#toast").classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>$("#toast").classList.remove("show"),2500)}
