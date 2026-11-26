@@ -3,7 +3,7 @@
   "functions": {
     "server.js": {
       "maxDuration": 60,
-      "includeFiles": "{Hizi.png,Track Maker}"
+      "includeFiles": "{Hizi.png,Track Maker,public/**,v2/**}"
     }
   },
   "framework": "express"
