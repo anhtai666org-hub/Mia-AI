@@ -526,3 +526,32 @@ body{
  .main:before{inset:-12%;filter:blur(30px)}
  .main:after{opacity:.18}
 }
+
+/* LIVE CONSTELLATIONS: boot, avatar, logo and conversation background */
+#miaParticles{opacity:1}
+.mia-boot #miaParticles{filter:drop-shadow(0 0 3px #b98cff)}
+.brand{position:relative;isolation:isolate;overflow:visible!important;padding:4px!important}
+.brand-icon{position:relative;z-index:2;width:100%;height:100%;object-fit:cover;border-radius:12px;box-shadow:0 0 18px #bb91ff65;animation:logoFloat 3.8s ease-in-out infinite,logoGlow 3.2s ease-in-out infinite}
+.brand:before{content:"";position:absolute;inset:-5px;border:1px solid #cda7ff7a;border-radius:19px;box-shadow:0 0 18px #a875e955;animation:logoOrbit 7s linear infinite;pointer-events:none}
+.brand:after{content:"";position:absolute;inset:-9px;border:1px dotted #d9c0ff55;border-radius:23px;animation:logoOrbit 13s linear infinite reverse;pointer-events:none}
+.brand-particles{position:absolute;inset:-12px;z-index:3;pointer-events:none}
+.mia-network-canvas{position:absolute;display:block;pointer-events:none;z-index:0}
+.main>.mia-network-canvas{inset:0;width:100%;height:100%;opacity:.82;mix-blend-mode:screen}
+.main{isolation:isolate;background:radial-gradient(ellipse at 48% 34%,#261a37 0%,#100e17 52%,#0b0a11 100%)}
+.main:before{opacity:.95!important;background:radial-gradient(ellipse at 22% 24%,#9b64d52c,transparent 39%),radial-gradient(ellipse at 83% 72%,#7950bd29,transparent 42%),radial-gradient(ellipse at 54% 4%,#d3adff14,transparent 37%)!important;filter:blur(30px)!important;animation:chatAurora 16s ease-in-out infinite alternate!important}
+.main:after{opacity:.5!important;background-size:220px 210px!important;animation:chatStars 22s linear infinite!important}
+.chat,.composerwrap{z-index:2}
+.orb{overflow:visible!important;isolation:isolate;z-index:1}
+.orb img{position:relative;z-index:2;box-shadow:0 0 23px #b88aff45}
+.orb>.mia-network-canvas{inset:-24px!important;width:calc(100% + 48px)!important;height:calc(100% + 48px)!important;z-index:1;opacity:1;overflow:visible}
+.orb:before{inset:-12px!important;border-color:#d8b6ff70!important;box-shadow:0 0 25px #b98aff44;z-index:0}
+.orb:after{inset:-21px!important;border-color:#b98be545!important;z-index:0}
+@keyframes logoFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-2px) scale(1.04)}}
+@keyframes logoGlow{0%,100%{filter:brightness(1) drop-shadow(0 0 4px #bd91ff55)}50%{filter:brightness(1.22) drop-shadow(0 0 12px #bd91ffbb)}}
+@keyframes logoOrbit{to{transform:rotate(360deg)}}
+@media(max-width:650px){
+ .main{background:radial-gradient(ellipse at 50% 30%,#241832 0%,#100e17 57%,#0b0a11 100%)}
+ .main>.mia-network-canvas{opacity:.72}
+ .orb>.mia-network-canvas{inset:-20px!important;width:calc(100% + 40px)!important;height:calc(100% + 40px)!important}
+}
+@media(prefers-reduced-motion:reduce){.brand-icon,.brand:before,.brand:after{animation:none!important}}
