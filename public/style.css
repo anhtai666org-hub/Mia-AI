@@ -612,3 +612,27 @@ body{
  animation:logoGlow 3.6s ease-in-out infinite!important;
 }
 .main>.mia-network-canvas{opacity:.86!important}
+
+
+/* Startup emblem: one clean rotating pentagon around a stationary Mia icon */
+.boot-mark{width:132px!important;height:132px!important;margin-bottom:25px!important}
+.boot-ring{
+ inset:0!important;border:0!important;border-radius:0!important;
+ transform:none!important;animation:bootPentagonSpin 18s linear infinite!important;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpolygon points='60,5 114,44 93,108 27,108 6,44' fill='none' stroke='%23d7b7ff' stroke-opacity='.82' stroke-width='1.35'/%3E%3C/svg%3E")!important;
+ background-size:100% 100%!important;background-repeat:no-repeat!important;
+ filter:drop-shadow(0 0 5px #b98aff66)!important;
+ box-shadow:none!important;
+}
+.boot-ring:before,.boot-ring:after{display:none!important;content:none!important}
+.boot-core{
+ width:76px!important;height:76px!important;border-radius:23px!important;
+ animation:none!important;transform:none!important;
+ box-shadow:0 0 22px #a66cff55,0 0 42px #8954d522!important;
+}
+.boot-core img{
+ width:100%!important;height:100%!important;object-fit:cover!important;
+ border-radius:19px!important;animation:none!important;transform:none!important;
+}
+@keyframes bootPentagonSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.boot-ring{animation:none!important}}
