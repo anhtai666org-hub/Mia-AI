@@ -749,6 +749,14 @@ body{
 .about-kicker{font-size:9px;letter-spacing:2.7px;font-weight:800;color:#c9a9ed;margin-bottom:7px}
 .about-hero h2{font:750 25px Manrope,sans-serif;letter-spacing:-.7px;margin:0 0 7px;color:#f8f2ff}
 .about-hero p{font-size:12px;line-height:1.7;color:#a99db5;margin:0}
+.about-creator{margin:0 0 12px;padding:14px;border:1px solid #cba8ff30;border-radius:17px;background:radial-gradient(ellipse at 0 0,#a16bd51c,transparent 70%),linear-gradient(145deg,#ffffff0b,#ffffff03);display:flex;flex-direction:column;gap:7px}
+.about-creator>strong{font:750 19px Manrope,sans-serif;color:#f3eaff}
+.about-socials{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:3px}
+.about-socials a{min-width:0;padding:10px;border:1px solid #d9baff20;border-radius:12px;background:#ffffff06;text-decoration:none;display:flex;flex-direction:column;gap:5px;transition:border-color .2s,background .2s}
+.about-socials a:hover{border-color:#cba8ff75;background:#b58aff12}
+.about-socials a span{font-size:10px;color:#a99ab9}
+.about-socials a b{font-size:11px;color:#e6d5ff;overflow-wrap:anywhere}
+@media(max-width:380px){.about-socials{grid-template-columns:1fr}}
 .about-version{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:0 0 12px}
 .about-version>div{min-height:83px;padding:13px 13px;border-radius:16px;border:1px solid #d9baff1b;background:linear-gradient(145deg,#ffffff0b,#ffffff03);display:flex;flex-direction:column;gap:5px}
 .about-version>div:first-child{grid-column:1/-1;min-height:91px;background:linear-gradient(110deg,#51366c55,#ffffff06);border-color:#cba8ff38}
