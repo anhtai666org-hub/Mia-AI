@@ -636,3 +636,45 @@ body{
 }
 @keyframes bootPentagonSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.boot-ring{animation:none!important}}
+
+
+/* Correct target: pentagon belongs to the home welcome avatar, not boot splash */
+.orb{position:relative!important;isolation:isolate!important;overflow:visible!important}
+.orb>.mia-network-canvas{display:none!important}
+.orb:before{
+ content:""!important;position:absolute!important;inset:-17px!important;
+ width:auto!important;height:auto!important;border:1px solid #d7b7ffb0!important;
+ border-radius:0!important;
+ background:none!important;
+ clip-path:polygon(50% 0%,97% 35%,79% 91%,21% 91%,3% 35%)!important;
+ box-shadow:0 0 15px #b98aff44!important;
+ transform:none!important;animation:welcomePentagon 14s linear infinite!important;
+ z-index:1!important;pointer-events:none!important;
+}
+.orb:after{
+ content:""!important;position:absolute!important;inset:-17px!important;
+ border:0!important;border-radius:0!important;
+ background:linear-gradient(135deg,transparent 48%,#d8baff88 49%,transparent 50%)!important;
+ opacity:.18!important;clip-path:polygon(50% 0%,97% 35%,79% 91%,21% 91%,3% 35%)!important;
+ transform:none!important;animation:none!important;z-index:1!important;
+}
+.orb img{position:relative!important;z-index:2!important;animation:none!important;transform:none!important}
+@keyframes welcomePentagon{to{transform:rotate(360deg)}}
+
+/* Restore the original startup emblem: rounded orbit + pulsing icon */
+.boot-mark{width:94px!important;height:94px!important;margin-bottom:25px!important}
+.boot-ring{
+ inset:0!important;border:1px solid #c6a5ff55!important;border-radius:30px!important;
+ transform:rotate(45deg)!important;animation:bootSpin 12s linear infinite!important;
+ background:none!important;filter:none!important;
+ box-shadow:0 0 42px #a87aff22,inset 0 0 28px #a87aff12!important;
+}
+.boot-ring:before,.boot-ring:after{display:block!important;content:""!important;position:absolute!important;width:7px!important;height:7px!important;border-radius:50%!important;background:#e2cfff!important;box-shadow:0 0 15px 4px #b78aff!important;top:9px!important;left:9px!important}
+.boot-ring:after{top:auto!important;left:auto!important;right:9px!important;bottom:9px!important;width:4px!important;height:4px!important}
+.boot-core{
+ width:66px!important;height:66px!important;border-radius:22px!important;
+ animation:bootPulse 2.8s ease-in-out infinite!important;
+ box-shadow:0 0 55px #a66cff55,0 0 110px #8954d522!important;
+}
+.boot-core img{border-radius:17px!important;filter:drop-shadow(0 3px 12px #0008)!important}
+@media(max-width:600px){.boot-mark{width:82px!important;height:82px!important}.boot-core{width:58px!important;height:58px!important}}
