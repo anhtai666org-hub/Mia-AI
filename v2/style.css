@@ -775,3 +775,29 @@ body{
  .about-hero{padding:20px 12px 22px}
 }
 @media(prefers-reduced-motion:reduce){.about-emblem:before,.presence-pulse{animation:none!important}}
+
+
+/* MIA AUTH DRAWER FIX: keep navigation visible and size the panel for phones */
+@media(max-width:650px){
+  .rail{position:relative!important;z-index:40!important}
+  .scrim{left:60px!important;z-index:30!important}
+  .drawer{
+    left:60px!important;
+    width:min(310px,calc(100vw - 82px))!important;
+    top:10px!important;
+    bottom:10px!important;
+    height:auto!important;
+    border-radius:0 22px 22px 0!important;
+    z-index:50!important;
+  }
+  .drawerbody{padding:16px 14px 20px!important}
+  .auth-intro{padding:5px 6px 3px}
+  .auth-intro h2{font-size:20px}
+  .fieldlabel{margin-top:15px}
+  .auth-submit{margin-top:18px}
+}
+@media(min-width:651px) and (max-width:800px){
+  .rail{z-index:40!important}
+  .scrim{left:66px!important;z-index:30!important}
+  .drawer{left:66px!important;width:min(340px,calc(100vw - 90px))!important;z-index:50!important}
+}
