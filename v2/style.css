@@ -555,3 +555,39 @@ body{
  .orb>.mia-network-canvas{inset:-20px!important;width:calc(100% + 40px)!important;height:calc(100% + 40px)!important}
 }
 @media(prefers-reduced-motion:reduce){.brand-icon,.brand:before,.brand:after{animation:none!important}}
+
+
+/* HOTFIX: keep ambient canvases alive after the 5-second boot screen */
+.main>.mia-network-canvas{z-index:1!important;opacity:.92!important;mix-blend-mode:screen}
+.main:before{z-index:0!important;opacity:.72!important}
+.main:after{z-index:0!important;opacity:.38!important}
+.main{background:radial-gradient(ellipse at 50% 35%,#302044 0%,#171321 46%,#0b0a12 100%)!important}
+.chat,.composerwrap{position:relative;z-index:2!important}
+.main>.mia-network-canvas{pointer-events:none!important}
+.orb{position:relative;overflow:visible!important;isolation:isolate}
+.orb>.mia-network-canvas{z-index:1!important;inset:-27px!important;width:calc(100% + 54px)!important;height:calc(100% + 54px)!important;opacity:1!important;overflow:visible!important}
+.orb img{position:relative;z-index:2;display:block;width:100%;height:100%;object-fit:cover;border-radius:inherit;animation:none!important;transform:none!important;filter:drop-shadow(0 0 9px #c59aff88)}
+.brand{
+ box-sizing:border-box!important;position:relative;display:grid!important;place-items:center!important;
+ width:47px!important;height:47px!important;min-width:47px!important;min-height:47px!important;
+ padding:4px!important;overflow:visible!important;
+}
+.brand-icon{
+ display:block!important;visibility:visible!important;opacity:1!important;
+ width:36px!important;height:36px!important;min-width:36px!important;min-height:36px!important;
+ max-width:none!important;max-height:none!important;object-fit:cover!important;
+ border-radius:11px!important;position:relative!important;z-index:3!important;
+ transform:none!important;animation:none!important;filter:drop-shadow(0 0 8px #c29aff99)!important;
+}
+.brand:before{inset:-5px!important;z-index:1!important;animation:logoOrbit 9s linear infinite!important}
+.brand:after{inset:-9px!important;z-index:1!important;animation:logoOrbit 15s linear infinite reverse!important}
+.brand>.mia-network-canvas{inset:-13px!important;width:calc(100% + 26px)!important;height:calc(100% + 26px)!important;z-index:2!important;opacity:1!important}
+.boot-core{animation:none!important;box-shadow:0 0 35px #a66cff66,0 0 85px #8954d544!important}
+.boot-core img{animation:none!important;transform:none!important;filter:drop-shadow(0 0 13px #c59affaa)!important}
+.boot-ring{animation:bootRing 8s linear infinite!important}
+@keyframes bootRing{to{transform:rotate(360deg)}}
+@media(max-width:650px){
+ .brand{width:47px!important;height:47px!important}
+ .brand-icon{width:36px!important;height:36px!important}
+ .main>.mia-network-canvas{opacity:.9!important}
+}
