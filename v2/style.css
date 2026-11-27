@@ -591,3 +591,24 @@ body{
  .brand-icon{width:36px!important;height:36px!important}
  .main>.mia-network-canvas{opacity:.9!important}
 }
+
+
+/* Logo rail: clean icon treatment, no particle-web overlay */
+.brand{overflow:visible!important;isolation:isolate!important}
+.brand>.mia-network-canvas{display:none!important}
+.brand:before{
+ inset:-4px!important;border:1px solid #cba7ff55!important;
+ border-radius:17px!important;box-shadow:0 0 13px #a875e933!important;
+ animation:logoOrbit 12s linear infinite!important;
+}
+.brand:after{
+ inset:-7px!important;border:0!important;border-radius:20px!important;
+ background:radial-gradient(ellipse at center,transparent 58%,#bd91ff18 72%,transparent 75%)!important;
+ animation:none!important;
+}
+.brand-icon{
+ border-radius:12px!important;
+ filter:drop-shadow(0 0 7px #c29aff88)!important;
+ animation:logoGlow 3.6s ease-in-out infinite!important;
+}
+.main>.mia-network-canvas{opacity:.86!important}
