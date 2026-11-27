@@ -8,7 +8,22 @@ function draw(){if(!alive)return;ctx.clearRect(0,0,w,h);const max=reduce?0:145;f
 resize();window.addEventListener("resize",resize);if(reduce)draw();else raf=requestAnimationFrame(draw);return()=>{alive=false;cancelAnimationFrame(raf);window.removeEventListener("resize",resize)}}
 const miaBootStartedAt=performance.now();
 const stopMiaBoot=startMiaBoot();
-function finishMiaBoot(){const layer=$("#miaBoot");if(!layer)return;const wait=Math.max(0,5000-(performance.now()-miaBootStartedAt));setTimeout(()=>{layer.classList.add("is-leaving");setTimeout(()=>{stopMiaBoot();layer.remove()},850)},wait)}
+function startAmbientNetwork(host,{count=34,reach=115,speed=.32,opacity=.72,size=1.25}={}){
+ if(!host||window.matchMedia("(prefers-reduced-motion: reduce)").matches)return()=>{};
+ const canvas=document.createElement("canvas");canvas.className="mia-network-canvas";canvas.setAttribute("aria-hidden","true");host.prepend(canvas);
+ const ctx=canvas.getContext("2d");if(!ctx)return()=>{};
+ let w=0,h=0,dpr=1,pts=[],raf=0,alive=true;
+ function resize(){const r=host.getBoundingClientRect();w=Math.max(1,r.width);h=Math.max(1,r.height);dpr=Math.min(devicePixelRatio||1,1.5);canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);canvas.style.width=w+"px";canvas.style.height=h+"px";ctx.setTransform(dpr,0,0,dpr,0,0);pts=Array.from({length:count},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*speed,vy:(Math.random()-.5)*speed,r:Math.random()*size+.55,phase:Math.random()*6.28}))}
+ function frame(){if(!alive)return;ctx.clearRect(0,0,w,h);for(let i=0;i<pts.length;i++){const p=pts[i];p.x+=p.vx;p.y+=p.vy;p.phase+=.025;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;const pulse=.65+.35*Math.sin(p.phase);ctx.beginPath();ctx.arc(p.x,p.y,p.r*(.8+pulse*.35),0,Math.PI*2);ctx.fillStyle="rgba(226,204,255,"+(opacity*pulse)+")";ctx.shadowBlur=9;ctx.shadowColor="#c59aff";ctx.fill();ctx.shadowBlur=0;for(let j=i+1;j<pts.length;j++){const q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.hypot(dx,dy);if(d<reach){const a=(1-d/reach)*opacity*.48;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle="rgba(185,143,255,"+a+")";ctx.lineWidth=.7;ctx.stroke()}}}raf=requestAnimationFrame(frame)}
+ const ro=new ResizeObserver(resize);ro.observe(host);resize();raf=requestAnimationFrame(frame);
+ return()=>{alive=false;cancelAnimationFrame(raf);ro.disconnect();canvas.remove()};
+}
+const stopAmbient=[
+ startAmbientNetwork(document.querySelector(".main"),{count:78,reach:158,speed:.22,opacity:.52,size:1.3}),
+ startAmbientNetwork(document.querySelector(".orb"),{count:22,reach:68,speed:.48,opacity:.95,size:1.15}),
+ startAmbientNetwork(document.querySelector(".brand"),{count:13,reach:48,speed:.38,opacity:.9,size:1})
+];
+function finishMiaBoot(){const layer=$("#miaBoot");if(!layer)return;const wait=Math.max(0,5000-(performance.now()-miaBootStartedAt));setTimeout(()=>{layer.classList.add("is-leaving");setTimeout(()=>{stopMiaBoot();stopAmbient.forEach(stop=>stop());layer.remove()},850)},wait)}
 
 const localKey="mia-v2-guest-chats";
 function toast(s){$("#toast").textContent=s;$("#toast").classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>$("#toast").classList.remove("show"),2500)}
