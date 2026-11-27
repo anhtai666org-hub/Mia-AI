@@ -19,9 +19,9 @@ function startAmbientNetwork(host,{count=34,reach=115,speed=.32,opacity=.72,size
  return()=>{alive=false;cancelAnimationFrame(raf);ro.disconnect();canvas.remove()};
 }
 const stopAmbient=[
- startAmbientNetwork(document.querySelector(".main"),{count:112,reach:176,speed:.34,opacity:.88,size:1.55}),
- startAmbientNetwork(document.querySelector(".orb"),{count:28,reach:78,speed:.55,opacity:1,size:1.35}),
- startAmbientNetwork(document.querySelector(".brand"),{count:18,reach:58,speed:.42,opacity:1,size:1.15})
+ startAmbientNetwork(document.querySelector(".main"),{count:112,reach:176,speed:.62,opacity:.78,size:1.45}),
+ startAmbientNetwork(document.querySelector(".orb"),{count:28,reach:78,speed:.68,opacity:.95,size:1.25}),
+
 ];
 function finishMiaBoot(){const layer=$("#miaBoot");if(!layer)return;const wait=Math.max(0,5000-(performance.now()-miaBootStartedAt));setTimeout(()=>{layer.classList.add("is-leaving");setTimeout(()=>{stopMiaBoot();layer.remove()},850)},wait)}
 
