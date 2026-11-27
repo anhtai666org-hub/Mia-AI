@@ -12,10 +12,11 @@ const app=express(),PORT=process.env.PORT||10000,AI_NAME="MIA AI";
 const GEMINI_MODEL=process.env.GEMINI_MODEL||"gemini-3.5-flash-lite";
 const {GoogleGenAI}=require("@google/genai");
 const gemini=process.env.GEMINI_API_KEY?new GoogleGenAI({apiKey:process.env.GEMINI_API_KEY}):null;
-const pool=process.env.DATABASE_URL?new Pool({connectionString:process.env.DATABASE_URL,ssl:process.env.DATABASE_URL.includes("render.com")?{rejectUnauthorized:false}:undefined}):null;
+const databaseUrl=process.env.DATABASE_URL?(()=>{try{const u=new URL(process.env.DATABASE_URL);if(u.hostname.endsWith(".pooler.supabase.com")&&u.port==="5432")u.port="6543";return u.toString()}catch{return process.env.DATABASE_URL}})():null;
+const pool=databaseUrl?new Pool({connectionString:databaseUrl,max:process.env.VERCEL?1:3,idleTimeoutMillis:10000,connectionTimeoutMillis:12000,allowExitOnIdle:true,ssl:databaseUrl.includes("render.com")?{rejectUnauthorized:false}:undefined}):null;
 const googleAuth=process.env.GOOGLE_CLIENT_ID?new OAuth2Client(process.env.GOOGLE_CLIENT_ID):null;
 const users=new Map(),conversations=new Map(),memories=new Map(),onlinePresence=new Map();
-async function initStore(){if(!pool)return;await pool.query("CREATE TABLE IF NOT EXISTS mia_users(id TEXT PRIMARY KEY,email TEXT UNIQUE NOT NULL,data JSONB NOT NULL)");await pool.query("CREATE TABLE IF NOT EXISTS mia_presence(ip_hash TEXT PRIMARY KEY,last_seen BIGINT NOT NULL)");await pool.query("CREATE TABLE IF NOT EXISTS mia_data(user_id TEXT PRIMARY KEY,conversations JSONB NOT NULL DEFAULT '[]',memories JSONB NOT NULL DEFAULT '[]')");await refreshUsers();console.log("Mia PostgreSQL ready",users.size,"users")}
+async function initStore(){if(!pool)throw new Error("DATABASE_URL chưa được cấu hình");await pool.query("CREATE TABLE IF NOT EXISTS mia_users(id TEXT PRIMARY KEY,email TEXT UNIQUE NOT NULL,data JSONB NOT NULL)");await pool.query("CREATE TABLE IF NOT EXISTS mia_presence(ip_hash TEXT PRIMARY KEY,last_seen BIGINT NOT NULL)");await pool.query("CREATE TABLE IF NOT EXISTS mia_data(user_id TEXT PRIMARY KEY,conversations JSONB NOT NULL DEFAULT '[]',memories JSONB NOT NULL DEFAULT '[]')");console.log("Mia PostgreSQL ready")}
 async function refreshUsers(){if(!pool)return;const r=await pool.query("SELECT data FROM mia_users");users.clear();for(const row of r.rows){if(row.data?.id)users.set(row.data.id,row.data)}}
 async function getUserById(id){if(!id)return null;let u=users.get(id);if(u)return u;if(pool){const r=await pool.query("SELECT data FROM mia_users WHERE id=$1",[id]);u=r.rows[0]?.data||null;if(u)users.set(id,u)}return u}
 async function findUserByEmail(email){if(pool){const r=await pool.query("SELECT data FROM mia_users WHERE email=$1 LIMIT 1",[email]);const u=r.rows[0]?.data||null;if(u)users.set(u.id,u);return u}return [...users.values()].find(x=>x.email===email)||null}
@@ -28,7 +29,7 @@ app.use(cookieSession({name:"ynai_session",keys:[process.env.SESSION_SECRET||"ch
 app.use("/api/",rateLimit({windowMs:60000,limit:60,standardHeaders:true,legacyHeaders:false}));
 let storeReady;
 function ensureStore(){if(!storeReady)storeReady=initStore();return storeReady;}
-app.use("/api",async(req,res,next)=>{try{await ensureStore();next()}catch(e){console.error("Database initialization failed",e);res.status(503).json({error:"Cơ sở dữ liệu tạm thời chưa sẵn sàng."})}});
+app.use("/api",async(req,res,next)=>{if(req.path==="/health"||req.path==="/config")return next();try{await ensureStore();next()}catch(e){console.error("Database initialization failed",e);res.status(503).json({error:"Cơ sở dữ liệu đang quá tải hoặc tạm thời chưa sẵn sàng. Dữ liệu của cậu vẫn được giữ nguyên."})}});
 function uid(){return Math.random().toString(36).slice(2)+Date.now().toString(36)}
 async function currentUser(req){if(req.session?.userId){const u=await getUserById(req.session.userId);if(u){await getUserData(u.id);return u}delete req.session.userId}if(!req.session)req.session={};if(!req.session.guestId)req.session.guestId="guest_"+uid();const id=req.session.guestId;await getUserData(id);return{id,username:"Khách",email:null,guest:true}}
 async function auth(req,res,next){try{const userId=req.session?.userId,user=userId?await getUserById(userId):null;if(!user)return res.status(401).json({error:"Cần đăng nhập."});req.user=user;await getUserData(user.id);return next()}catch(e){return next(e)}}
