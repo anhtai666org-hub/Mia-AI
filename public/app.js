@@ -19,11 +19,11 @@ function startAmbientNetwork(host,{count=34,reach=115,speed=.32,opacity=.72,size
  return()=>{alive=false;cancelAnimationFrame(raf);ro.disconnect();canvas.remove()};
 }
 const stopAmbient=[
- startAmbientNetwork(document.querySelector(".main"),{count:78,reach:158,speed:.22,opacity:.52,size:1.3}),
- startAmbientNetwork(document.querySelector(".orb"),{count:22,reach:68,speed:.48,opacity:.95,size:1.15}),
- startAmbientNetwork(document.querySelector(".brand"),{count:13,reach:48,speed:.38,opacity:.9,size:1})
+ startAmbientNetwork(document.querySelector(".main"),{count:112,reach:176,speed:.34,opacity:.88,size:1.55}),
+ startAmbientNetwork(document.querySelector(".orb"),{count:28,reach:78,speed:.55,opacity:1,size:1.35}),
+ startAmbientNetwork(document.querySelector(".brand"),{count:18,reach:58,speed:.42,opacity:1,size:1.15})
 ];
-function finishMiaBoot(){const layer=$("#miaBoot");if(!layer)return;const wait=Math.max(0,5000-(performance.now()-miaBootStartedAt));setTimeout(()=>{layer.classList.add("is-leaving");setTimeout(()=>{stopMiaBoot();stopAmbient.forEach(stop=>stop());layer.remove()},850)},wait)}
+function finishMiaBoot(){const layer=$("#miaBoot");if(!layer)return;const wait=Math.max(0,5000-(performance.now()-miaBootStartedAt));setTimeout(()=>{layer.classList.add("is-leaving");setTimeout(()=>{stopMiaBoot();layer.remove()},850)},wait)}
 
 const localKey="mia-v2-guest-chats";
 function toast(s){$("#toast").textContent=s;$("#toast").classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>$("#toast").classList.remove("show"),2500)}
