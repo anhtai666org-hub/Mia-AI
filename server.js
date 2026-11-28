@@ -55,7 +55,7 @@ app.post("/api/memories",auth,async(req,res)=>{const text=String(req.body?.conte
 app.delete("/api/memories/:id",auth,async(req,res)=>{await mutateUserData(req.user.id,d=>{const i=d.memories.findIndex(x=>x.id===req.params.id);if(i>=0)d.memories.splice(i,1)});res.json({ok:true})});
 app.delete("/api/memories",auth,async(req,res)=>{await mutateUserData(req.user.id,d=>{d.memories=[]});res.json({ok:true})});
 app.post("/api/chat",chatUser,async(req,res)=>{
- if(!gemini)return res.status(503).json({error:"Bên tớ Không phát hiện Mô hình AI được thiết lập, đợi cập nhật từ せんぱい nha!! Chúng tớ sẽ cập nhật sớm thôi!!"});
+ if(!gemini)return res.status(503).json({error:"Bên mình Không phát hiện Mô hình AI được thiết lập, đợi cập nhật từ せんぱい nha!! Chúng mình sẽ cập nhật sớm thôi!!"});
  const text=String(req.body?.message||"").trim(),media=Array.isArray(req.body?.media)?req.body.media:(req.body?.media&&typeof req.body.media==="object"?[req.body.media]:[]);
  if(!text&&!media.length)return res.status(400).json({error:"Tin nhắn trống."});if(text.length>12000)return res.status(400).json({error:"Tin nhắn quá dài."});
  if(media.length>3||media.some(m=>!/^data:(image\/|video\/)/.test(String(m.dataUrl||"")))||media.reduce((n,m)=>n+String(m.dataUrl||"").length,0)>21000000)return res.status(400).json({error:"Tối đa 3 ảnh/video, tổng dung lượng 15 MB."});
